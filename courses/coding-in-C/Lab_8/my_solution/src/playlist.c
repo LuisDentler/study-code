@@ -65,3 +65,19 @@ void print_playlist(const Playlist *playlist)
     
 }
 
+void delete_firstSong(Playlist *playlist)
+{
+    if (!playlist->p_head)
+    {
+        return;
+    }
+    Song *tempo = playlist->p_head;
+    playlist->p_head = tempo->p_nextSong;
+
+    free(tempo->artist);
+    free(tempo->title);
+    free(tempo);
+
+    playlist->size--;
+}
+
