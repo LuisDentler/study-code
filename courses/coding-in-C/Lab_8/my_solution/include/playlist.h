@@ -24,7 +24,7 @@ typedef struct Playlist
 
 //Funktionen 
 void init_playlist(Playlist *p_playlist);
-void add_song(Playlist *p_playlist, const char *title, const char *artist);
+void add_song(Playlist *playlist, const char *title, const char *artist);
 void print_playlist(const Playlist *playlist);
 void delete_firstSong(Playlist *playlist);
 void delete_playlist(Playlist *playlist);
