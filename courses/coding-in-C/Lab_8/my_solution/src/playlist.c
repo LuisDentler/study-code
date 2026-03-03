@@ -51,5 +51,17 @@ void add_song(Playlist *playlist, const char *title, const char *artist)
     }
     playlist->size++;
     
+}
+
+void print_playlist(const Playlist *playlist)
+{
+    printf("Playlist contains %d song(s):\n", playlist->size);
+    Song *current = playlist->p_head;
+    while (current)
+    {
+        printf("Title: %s, Artist: %s\n", current->title, current->artist);
+        current = current->p_nextSong;
+    }
     
 }
+
