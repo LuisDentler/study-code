@@ -31,6 +31,25 @@ void add_song(Playlist *playlist, const char *title, const char *artist)
         free(new_song);
         return;
     }
+    strcpy(new_song->title, title);
+    strcpy(new_song->artist, artist);
+    new_song->p_nextSong = NULL;
+
+    if(!playlist->p_head)
+    {
+        playlist->p_head = new_song;
+    }
+    else
+    {
+        Song *last = playlist->p_head;
+        while (last->p_nextSong)
+        {
+            last=last->p_nextSong;
+        }
+        last->p_nextSong = new_song;
+        
+    }
+    playlist->size++;
     
     
 }
