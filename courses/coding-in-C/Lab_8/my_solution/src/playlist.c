@@ -81,3 +81,10 @@ void delete_firstSong(Playlist *playlist)
     playlist->size--;
 }
 
+void delete_playlist(Playlist *playlist)
+{
+    while(playlist->p_head)
+    {
+        delete_firstSong(playlist);
+    }
+}
