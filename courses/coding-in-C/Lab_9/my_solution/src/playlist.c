@@ -88,3 +88,24 @@ void delete_playlist(Playlist *playlist)
         delete_firstSong(playlist);
     }
 }
+
+Song* find_song_by_title(Playlist *playlist, const char *title)
+{
+    //pointer to head of playlist 
+    Song *current = playlist->p_head;
+
+    //Solange current vorhanden 
+    while(current)
+    {
+        //Wenn titel des aktuellen Songs = Titel des gesuchten Songs
+        if (strcmp(current->title, title)== 0)
+        {
+            //Gebe aktuellen Song als den gefunden Zurück
+            return current;
+        }
+        //springe zum nächsten Song in der Playlist 
+        current = current->p_nextSong;
+    }
+    //Wenn kein pasender Song gefunden wurde return NULL
+    return NULL;
+}
