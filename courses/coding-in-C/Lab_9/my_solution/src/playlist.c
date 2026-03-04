@@ -156,6 +156,17 @@ void sort_playlist_by_title(Playlist *playlist)
         sorted_ptr = ptr1;
         
     } while (switched);
-    
+}
+
+static void switch_songs(Song *x, Song *y)
+{
+    // Speicher die Werte zwischen 
+    char *temp_t = x->title;
+    char *temp_a = x->artist;
+
+    //Werte
+    y->artist = x->artist;
+    y->title = x->title;
+
 
 }
