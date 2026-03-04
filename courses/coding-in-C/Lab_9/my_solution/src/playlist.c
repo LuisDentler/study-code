@@ -120,3 +120,42 @@ int count_songs_recursive(const Song *current)
     return 1 + count_songs_recursive(current->p_nextSong);
     
 }
+
+void sort_playlist_by_title(Playlist *playlist)
+{
+    //Wenn Liste NULL dann beenden da nichts zu sortieren 
+    if(!playlist->p_head)
+    {
+        return;
+    }
+
+    int switched;
+    Song *ptr1;
+    Song *sorted_ptr = NULL;
+
+    do
+    {
+        switched = 0;
+        ptr1 = playlist->p_head;
+        //Solange der ptr1->p_nextSong nicht gleich dem sorted_pointer ist 
+        while (ptr1->p_nextSong != sorted_ptr)
+        {
+            //Wenn die Songs ptr1 und ptr1->p_nextSong nicht richtig sortiert sind
+            if(strcmp(ptr1->title, ptr1->p_nextSong->title)>0)
+            {
+                //Vertausche die songs in extra funktion 
+                switch_songs(ptr1, ptr1->p_nextSong);
+                //Setzte switched =1 sodass die schleife weiter läuft -> noch nicht fertig sortiert!
+                switched = 1;
+            }
+            //gehe eine Position weiter
+            ptr1 = ptr1->p_nextSong;
+
+        }
+        //Verschiebe Sortier Grenze auf ptr1
+        sorted_ptr = ptr1;
+        
+    } while (switched);
+    
+
+}
