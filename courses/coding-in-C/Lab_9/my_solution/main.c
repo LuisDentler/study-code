@@ -14,7 +14,7 @@ int main(void)
 
 
     //Suche nach dem Song 
-    printf("\nSearching for song 'Layla' (iterative):\n");
+    printf("\nSuche nach Song Layla: \n");
     Song *found = find_song_by_title(&myPlaylist, "Layla");
     if (found)
     {
@@ -22,12 +22,12 @@ int main(void)
     }
     else
     {
-        printf("Song not found\n");
+        printf("Song nicht gefunden\n");
     }
 
     //Zähle die songs der Playlist 
     int count = count_songs_recursive(myPlaylist.p_head);
-    printf("The playlist contains %d Songs!\n", count);
+    printf("Die Playlist enthält %d Songs!\n", count);
 
 
 
