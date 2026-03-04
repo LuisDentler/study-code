@@ -12,9 +12,24 @@ int main(void)
 
     print_playlist(&myPlaylist);
 
-    delete_firstSong(&myPlaylist);
 
-    print_playlist(&myPlaylist);
+    //Suche nach dem Song 
+    printf("\nSearching for song 'Layla' (iterative):\n");
+    Song *found = find_song_by_title(&myPlaylist, "Layla");
+    if (found)
+    {
+        printf("Gefunden: %s von %s\n", found->title, found->artist);
+    }
+    else
+    {
+        printf("Song not found\n");
+    }
+
+    //Zähle die songs der Playlist 
+    int count = count_songs_recursive(myPlaylist.p_head);
+    printf("The playlist contains %d Songs!\n", count);
+
+
 
     delete_playlist(&myPlaylist);
 
