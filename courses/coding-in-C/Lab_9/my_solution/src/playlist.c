@@ -7,7 +7,6 @@ void init_playlist(Playlist *p_playlist)
     p_playlist->size = 0;
 }
 
-
 void add_song(Playlist *playlist, const char *title, const char *artist)
 {
     if (playlist->size >= MAX_SONGS)
@@ -91,7 +90,7 @@ void delete_playlist(Playlist *playlist)
 
 Song* find_song_by_title(Playlist *playlist, const char *title)
 {
-    //pointer to head of playlist 
+    //pointer auf ersten Song playlist 
     Song *current = playlist->p_head;
 
     //Solange current vorhanden 
@@ -108,4 +107,16 @@ Song* find_song_by_title(Playlist *playlist, const char *title)
     }
     //Wenn kein pasender Song gefunden wurde return NULL
     return NULL;
+}
+
+int count_songs_recursive(const Song *current)
+{
+    //Wenn der aktuelle Knoten Nicht existiert 
+    if (current == NULL)
+    {
+        return 0;
+    }
+    //Wenn nicht dann gib 1 + den wert von der gleichen Funktion des näcshten Knoten
+    return 1 + count_songs_recursive(current->p_nextSong);
+    
 }
