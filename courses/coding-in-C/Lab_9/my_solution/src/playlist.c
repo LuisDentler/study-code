@@ -168,5 +168,4 @@ static void switch_songs(Song *x, Song *y)
     y->artist = x->artist;
     y->title = x->title;
 
-
 }
