@@ -1,4 +1,4 @@
-# Lab 1: From C to C++
+# Lab 2: From C to C++
 
 This lab focuses on getting started with C++ especially for programmers familiar with C.
 
@@ -50,14 +50,6 @@ g++ helloWorld.cpp -o helloWorld
 * If you struggle with these steps or wonder how to get running on your private, local machine, you can follow the lab1 of the C course which can be found [in this same repo](https://github.com/christian-braunagel/study-code/tree/main/courses/coding-in-C/Lab_1)
 
 ## 🟢 Section II: Age Validation
-The goal of this section is to familiarize yourself with the C++ coding convention of this course.
-
-### Task Description
-* Navigate to the __coding-in-C++__ folder and open the __cpp_coding_conventions.md__
-* Read the convention in detail at least up to point 18.)
-* If you do not understand something, align with colleagues, teachers or AI bots
-
-## 🟢 Section III: Age Validation
 
 The goal of this section is to get to know some new features of the C++ language.
 
@@ -121,7 +113,7 @@ Note: Write the answers for the questions in the code as comments.
 * Fix the issue when using __uint8_t__ by using an integer for the user input and static casts for the parameters instead.
 * Which other portable data types would make sense in this example?
 
-## 🟡 Section IV: Student Grade Report Formatter
+## 🟡 Section III: Student Grade Report Formatter
 
 You will practice the following concepts:
 
