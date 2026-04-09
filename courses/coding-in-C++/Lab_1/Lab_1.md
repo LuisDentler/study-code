@@ -114,6 +114,7 @@ Please enter your age:
 ```
 * Ensure that the user input is a number not some random text
 * Ensure that the user input is not negative
+* Ensure that the user input is not unrealistic high
 * Ask the user to re-enter the input if it was not valid
 * Use the portable data type __uint8_t__ in the main function to store entered age.
 
