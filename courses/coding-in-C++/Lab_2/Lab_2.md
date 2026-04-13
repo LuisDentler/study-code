@@ -73,14 +73,27 @@ Create a class “Note” that stores a text message which is only known at runt
   - copies the text into the allocated memory  
 
 * The destructor:
-  - frees the allocated memory  
+  - frees the allocated memory
+  - handles the dangling pointer
   - prints a short message: `"Memory released"`  
 
 * `display()`:
   - prints the stored text to the console  
 
-### Task
+### Task Part 1
 
-* Create an object of the class in the `main` function  
-* Call `display()`  
-* Observe when the destructor is automatically called  
+* Create an object of the class in the `main` function
+* Create a second object and initialize it with the first object
+* Call `display()` for both objects  
+* Observe and explain in the comments:
+   * When the destructor is automatically called
+   * What exception occurs or might occur in the destructor
+
+### Task Part 2
+
+* Extend the class Note by implementing a copy constructor
+* When a Note object is copied, the new object must allocate its own memory and store its own copy of the string
+* Verify if this resolves the observed issue from Part 1
+
+## 🟢 Section III: Note Class
+
