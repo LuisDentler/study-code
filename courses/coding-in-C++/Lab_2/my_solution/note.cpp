@@ -25,14 +25,13 @@ class Note
         {
             delete text;
             text = nullptr;
+            std::cout << "peicher freigegeben" << std::endl;
         }
 
         void display()
         {
             std::cout <<*text<< std::endl;
         }
-
-
 };
 
 int main()
@@ -42,7 +41,7 @@ int main()
 
     note1.display();
     note2.display();
-    
+
     return 0;
 } 
 
