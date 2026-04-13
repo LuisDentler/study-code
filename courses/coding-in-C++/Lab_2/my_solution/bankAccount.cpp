@@ -5,7 +5,7 @@ class BankAccount
 {
     private:
         std::string owner;
-        double kontostand = 1000;
+        double kontostand;
 
     public:
         void setOwner(std::string name)
