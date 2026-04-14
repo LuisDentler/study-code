@@ -38,7 +38,7 @@ The following requirements should be met:
 * deposits should be > 0
 * withdrawals should only be possible if there is enough money in the account
 * `getBalance()` and `getAccountInfo()` should be defined outside of the class
-* `getAccountInfo()` should return owner and balance
+* `getAccountInfo()` should print owner and balance
 * Check the class and its methods within the main function of your program
 
 #### Question to answer
