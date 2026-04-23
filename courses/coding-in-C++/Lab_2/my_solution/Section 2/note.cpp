@@ -42,6 +42,6 @@ int main()
     note1.display();
     note2.display();
 
-    return 0;
+    return 0; 
 } 
 
