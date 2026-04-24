@@ -23,7 +23,7 @@ namespace validation
 int main()
 {
     const std::uint8_t MAX_VALID_AGE = 130;
-    int age;
+    int age; // uint_8 wird als Char interpretiert und dabei wird dann nur die erste Zahl genommen (z.B. 1 von 18) und das führt dann zu einem Fehler, da die Zahl dann zu klein ist um als Adult oder Senior zu gelten. Daher muss ich hier int nehmen, damit die ganze Zahl eingelesen wird.10->1)
     std::cout <<"Please enter your age: ";
 
     while (true)
@@ -53,7 +53,7 @@ int main()
         std::cout <<"Please enter your age: ";
     }
     
-    std::cout <<"Your are " <<age << " old." << std::endl;
+    std::cout <<"Your are " << age << " old." << std::endl;
 
     if (validation::isSenior(age))
     {
