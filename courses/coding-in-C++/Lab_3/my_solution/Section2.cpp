@@ -16,9 +16,7 @@ class User{
          * @param[in] name  User's name
          * @param[in] id    User's ID
          */
-        User(std::string name, int id){
-            this->name = name;
-            this->id = id;
+        User(std::string name, int id):name(name), id(id){
         }
         /**
          * @brief Prints user information.
@@ -44,8 +42,7 @@ class Student : public User{
          * @param[in] id    Student's ID
          * @param[in] major Student's major field of study
          */
-        Student(std::string name, int id, std::string major) : User(name, id){
-            this->major = major;
+        Student(std::string name, int id, std::string major) : User(name, id), major(major){
         }
         /**
          * @brief Prints student information.
@@ -71,8 +68,7 @@ class Instructor : public User{
          * @param[in] id          Instructor's ID
          * @param[in] department  Instructor's department
          */
-        Instructor(std::string name, int id, std::string department) : User(name, id){
-            this->department = department;
+        Instructor(std::string name, int id, std::string department) : User(name, id), department(department){
         }
         /**
          * @brief Prints instructor information.
