@@ -80,6 +80,7 @@ class Vector2D{
         }
         
         
+        
     };
 
     /**
@@ -94,6 +95,16 @@ class Vector2D{
         return Vector2D(left_vector.getX() + right_vector.getX(), left_vector.getY() + right_vector.getY());
     }
     
+    Vector2D operator *(const Vector2D &vec, int scalar){
+        return Vector2D(vec.getX() * scalar, vec.getY() * scalar);
+    }
+    Vector2D operator *(int scalar, const Vector2D &vec){
+        return Vector2D(vec.getX() * scalar, vec.getY() * scalar);
+    }   
+    
+    
+
+
 int main(){
     
     Vector2D v1(3.5, 4.5); 
@@ -108,5 +119,9 @@ int main(){
     v3.operator+=(v1);
     std::cout << "v3 after adding v1: ";
     v3.printVector();
+    Vector2D v4 = v3 * 2;
+    std::cout << "v4 (v3 multiplied by 2): ";
+    v4.printVector();
+    
     return 0;
 }
