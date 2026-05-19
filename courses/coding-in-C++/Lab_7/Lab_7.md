@@ -101,11 +101,13 @@ Create an object in main representing the graph shown in the image above in sect
 
 ---
 
-## 🟡 Section V: Shortest Path with Dijkstra
+## 🔴 Section V: Shortest Path with Dijkstra
 
 In this section, you will extend your adjacency list implementation and use it to find the shortest path between two vertices.
 
 Dijkstra's algorithm is used to find the shortest path from one start vertex to all other vertices in a weighted graph. The algorithm works step by step by always selecting the currently unvisited vertex with the smallest known distance.
+
+Learn more about it [in this video](https://youtu.be/bZkzH5x0SKU?si=2SHKmCb2u9zQYWyR).
 
 ## Task Description
 
@@ -140,32 +142,3 @@ Test your implementation with at least two different start and destination verti
 Answer as comment in the code:
 * Why is Dijkstra more efficient than calculating all possible paths?
 * Why does Dijkstra require non-negative edge weights?
-
----
-
-## 🔴 Section VI: Navigation software
-
-In this section, you will implement an algorithm for a navigation system. You practice and apply all the know-how gathered in the sections above.
-
-## Task Description
-
-Given is the graph below representing various citites of Germany:
-
-![Graph of German cities](graphGermany.svg)
-
-Implement an algorithm which:
-* takes a starting point and a destination
-* calculates all possible routes between two given cities
-* selects the shortest route
-* returns a list of all vertices of the shortest route including start- and endpoint
-
-Consider OOP for creating your algorithm and your data structure.
-Start by creating an UML class diagram for your program.
-
-Hint: Represent the cities not as strings but as numbers. E.g.:
-
-Frankfurt a.M. = 0
-
-Koeln = 1
-
-...
