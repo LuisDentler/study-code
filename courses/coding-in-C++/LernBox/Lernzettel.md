@@ -104,12 +104,13 @@ const double PI = 3.14159;
 ### 2.2 const bei Funktionsparametern
 ```cpp
 // Parameter soll NICHT verändert werden
-void printName(const std::string& name) {
+// Parameter soll NICHT verändert werden
+void print_name(const std::string& name) {
     std::cout << name << std::endl;
 }
 
 // Parameter kann verändert werden
-void modifyValue(int& value) {
+void modify_value(int& value) {
     value = 100;                // ✅ OK
 }
 ```
@@ -120,18 +121,18 @@ void modifyValue(int& value) {
 ```cpp
 class BankAccount {
 private:
-    double balance = 1000.0;
+    double m_balance = 1000.0;
 
 public:
     // Diese Funktion ändert KEINE Membervariablen
-    double getBalance() const {
-        return balance;         // ✅ Lesbar
-        // balance = 500;       // ❌ FEHLER in const Funktion!
+    double get_balance() const {
+        return m_balance;         // ✅ Lesbar
+        // m_balance = 500;       // ❌ FEHLER in const Funktion!
     }
 
     // Diese Funktion ÄNDERT Membervariablen
     void deposit(double amount) {
-        balance += amount;      // ✅ OK
+        m_balance += amount;      // ✅ OK
     }
 };
 ```
@@ -274,17 +275,17 @@ greet("Anna");          // "Hallo Anna"
 ### Pass by Value vs. Reference
 ```cpp
 // By Value - Kopie wird gemacht
-void modifyValue(int x) {
+void modify_value(int x) {
     x = 100;            // Original unverändert
 }
 
 // By Reference - Original wird verändert
-void modifyReference(int& x) {
+void modify_reference(int& x) {
     x = 100;            // Original wird verändert
 }
 
 // By const Reference - effizient, ohne Änderungen
-void readData(const std::string& str) {
+void read_data(const std::string& str) {
     // Keine Kopie, nicht veränderbar
 }
 ```
@@ -292,7 +293,7 @@ void readData(const std::string& str) {
 ### Return Values
 ```cpp
 // Rückgabe mit Kopie
-std::string getName() {
+std::string get_name() {
     return "John";      // ✅ OK für kleine Werte
 }
 
@@ -311,24 +312,24 @@ const std::vector<int>& getVector() {
 
 ### Grundstruktur
 ```cpp
-class Animal {
+class Person {
 private:
-    std::string name;
-    int age;
+    std::string m_name;
+    int m_age;
+    const int m_id;
 
 public:
-    Animal(const std::string& n, int a) : name(n), age(a) { }
+    // ✅ RICHTIG - mit Initialisierungsliste
+    Person(const std::string& name, int age, int id) 
+        : m_name(name), m_age(age), m_id(id) { }
 
-    std::string getName() const {
-        return name;
-    }
-
-    void setName(const std::string& n) {
-        name = n;
-    }
-
-    virtual void speak() const {
-        std::cout << name << " makes a sound" << std::endl;
+    // ❌ FALSCH - ohne Initialisierungsliste
+    // Person(const std::string& name, int age, int id) {
+    //     m_name = name;
+    //     m_age = age;
+    //     // m_id = id;  ← const kann NICHT mit = gesetzt werden!
+    // }
+};
     }
 
     virtual ~Animal() = default;  // wichtig bei Vererbung
@@ -339,19 +340,19 @@ public:
 ```cpp
 class Dog : public Animal {
 public:
-    Dog(const std::string& n, int a) : Animal(n, a) { }
+    Dog(const std::string& name, int age) : Animal(name, age) { }
 
     void speak() const override {
-        std::cout << getName() << " says: Woof!" << std::endl;
+        std::cout << get_name() << " says: Woof!" << std::endl;
     }
 };
 
 class Cat : public Animal {
 public:
-    Cat(const std::string& n, int a) : Animal(n, a) { }
+    Cat(const std::string& name, int age) : Animal(name, age) { }
 
     void speak() const override {
-        std::cout << getName() << " says: Meow!" << std::endl;
+        std::cout << get_name() << " says: Meow!" << std::endl;
     }
 };
 ```
@@ -647,14 +648,14 @@ int Calculator::subtract(int a, int b) const {
 ### Fehler 1: const vergessen
 ```cpp
 // ❌ FALSCH
-void printVector(std::vector<int>& vec) {
+void print_vector(std::vector<int>& vec) {
     for (int num : vec) {
         std::cout << num << " ";  // Warum nicht const?
     }
 }
 
 // ✅ RICHTIG
-void printVector(const std::vector<int>& vec) {
+void print_vector(const std::vector<int>& vec) {
     for (int num : vec) {
         std::cout << num << " ";
     }
@@ -664,19 +665,19 @@ void printVector(const std::vector<int>& vec) {
 ### Fehler 2: Dangling Reference
 ```cpp
 // ❌ FALSCH
-const std::string& getName() {
+const std::string& get_name() {
     std::string name = "John";
     return name;    // ❌ name wird nach return gelöscht!
 }
 
 // ✅ RICHTIG
-const std::string& getName() {
+const std::string& get_name() {
     static std::string name = "John";
     return name;    // ✅ static existiert weiterhin
 }
 
 // ✅ ODER (besser)
-std::string getName() {
+std::string get_name() {
     return "John";  // ✅ Kopie wird zurückgegeben
 }
 ```
@@ -746,27 +747,6 @@ try {
 }
 ```
 
-### std::optional (C++17)
-```cpp
-#include <optional>
 
-std::optional<int> findUser(const std::string& name) {
-    if (name == "admin") {
-        return 1;           // User gefunden
-    }
-    return std::nullopt;    // User nicht gefunden
-}
 
-auto result = findUser("admin");
-if (result.has_value()) {
-    std::cout << result.value() << std::endl;
-}
-```
 
----
-
-## Ressourcen
-
-- [C++ Reference](https://en.cppreference.com/)
-- [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-- [Modern C++ Best Practices](https://github.com/isocpp/CppCoreGuidelines)
