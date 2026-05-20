@@ -21,9 +21,10 @@
 - Dateinamen sollten den Typ oder Zweck klar beschreiben.
 
 ### Header-Dateien
-- Nutze Include-Guards oder `#pragma once`.
-- Keine globalen Objektdefinitionen im Header.
-- Nur das einbinden, was wirklich benötigt wird.
+- Nutze Include-Guards 
+- Funktionsheader und Klassen 
+- Templates mit Implementierung
+- Funtionsbeschreibung mit @brief, param[in],param[out] und Beschreibung
 
 ### Kommentare
 - Beschreibe den Zweck und die Annahmen, nicht den Code selbst.
@@ -63,19 +64,7 @@ public:
 const int MAX_BUFFER_SIZE = 128;
 ```
 
-### Schlechte Beispiele
-```cpp
-class motorcontroller
-{
-private:
-    int s;
 
-public:
-    void st(int x);
-};
-
-const int x = 128;
-```
 
 ### Beispiel für Variablen und Funktionen
 ```cpp
@@ -99,21 +88,6 @@ class VehicleController { };
 struct DataPoint { };
 ```
 
-### Private Membervariablen (mit Unterstrich oder m_ Präfix)
-```cpp
-class Calculator
-{
-private:
-    int _result;           // oder
-    int m_result;          // beide Varianten sind ok
-};
-```
-
-### Konstante Objekte
-```cpp
-const int MAX_SIZE = 100;
-const std::string DATABASE_NAME = "mydb.db";
-```
 
 ---
 
@@ -121,12 +95,9 @@ const std::string DATABASE_NAME = "mydb.db";
 
 ### 2.1 Konstante Variablen (unveränderbar)
 ```cpp
-const int MAX_AGE = 120;        // Wert kann NICHT geändert werden
-MAX_AGE = 150;                  // ❌ FEHLER!
-
+const int MAX_AGE = 120;       
 const double PI = 3.14159;
-PI = 3.14;                      // ❌ FEHLER!
-```
+
 
 **WANN:** Wenn ein Wert sich nie ändern darf (Konstanten, Magic Numbers)
 
@@ -134,7 +105,6 @@ PI = 3.14;                      // ❌ FEHLER!
 ```cpp
 // Parameter soll NICHT verändert werden
 void printName(const std::string& name) {
-    name = "Other";             // ❌ FEHLER!
     std::cout << name << std::endl;
 }
 
@@ -463,6 +433,140 @@ public:
 ```
 
 **WANN:** Immer für const Member, Referenzen und Memberobjekte.
+
+### UML nach C++ übersetzen
+UML-Diagramme helfen dir, Klassendesigns zu planen. Hier steht, wie du die wichtigsten UML-Elemente in C++ umsetzt.
+
+#### Klassensymbole
+- Ein UML-Klassenkästchen zeigt Name, Attribute und Operationen.
+- In C++ wird daraus eine `class` oder `struct`.
+
+UML:
+```
++ Person
+- name : std::string
+- age : int
++ set_name(name : std::string) : void
+```
+
+C++:
+```cpp
+class Person
+{
+public:
+    void set_name(const std::string& name);
+
+private:
+    std::string name;
+    int age;
+};
+```
+
+#### Sichtbarkeit
+- `+` → `public`
+- `-` → `private`
+- `#` → `protected`
+
+#### Abstrakte Klassen und `abstract`
+- In UML steht `abstract` oft kursiv oder als `<<abstract>>`.
+- In C++ bedeutet das: mindestens eine reine virtuelle Funktion, keine Instanziierung möglich.
+
+UML:
+```
+<<abstract>>
+Shape
++ area() : double
+```
+
+C++:
+```cpp
+class Shape
+{
+public:
+    virtual double area() const = 0;
+    virtual ~Shape() = default;
+};
+```
+
+#### Interfaces
+- Ein UML-Interface wird in C++ meist als abstrakte Basisklasse mit reinen virtuellen Funktionen modelliert.
+
+UML:
+```
+<<interface>>
+Drawable
++ draw() : void
+```
+
+C++:
+```cpp
+class Drawable
+{
+public:
+    virtual void draw() const = 0;
+    virtual ~Drawable() = default;
+};
+```
+
+#### Vererbung
+- Pfeil mit leerer Spitze (`Generalization`) bedeutet öffentliche Vererbung.
+- In C++: `class Dog : public Animal { ... }`
+
+#### Assoziation, Aggregation, Komposition
+- Einfache Assoziation: ein Klassenattribut oder Funktionsparameter.
+- Aggregation (`open diamond`): hat Beziehung als Pointer/Referenz oder Container.
+- Komposition (`filled diamond`): besitzt Objekt direkt als Member.
+
+UML-Komposition:
+```
+Car
+- engine : Engine
+```
+C++:
+```cpp
+class Engine { };
+
+class Car
+{
+private:
+    Engine engine;  // Komposition: besitzt Engine direkt
+};
+```
+
+UML-Aggregation:
+```
+Team
+- players : Player[*]
+```
+C++:
+```cpp
+class Player { };
+
+class Team
+{
+private:
+    std::vector<Player> players;  // Aggregation: Team verwaltet Spieler
+};
+```
+
+#### Multiplizität
+- `1` → direktes Objekt oder Referenz
+- `0..1` → `std::optional<T>` oder Zeiger
+- `*` oder `0..*` → `std::vector<T>` oder Container
+
+#### Methoden und Parameter
+- In UML steht `operation(params) : return_type`.
+- In C++ wird daraus `return_type operation(param_type param_name);`.
+
+Beispiel UML:
+```
++ add_item(item : Item) : bool
+```
+
+C++:
+```cpp
+bool add_item(const Item& item);
+```
 
 ---
 
