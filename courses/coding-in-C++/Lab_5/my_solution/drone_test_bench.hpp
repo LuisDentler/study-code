@@ -1,0 +1,76 @@
+#ifndef DRONE_TEST_BENCH_HPP
+#define DRONE_TEST_BENCH_HPP
+
+#include <iostream>
+#include <cstddef>
+
+/*
+@brief Swap two Values
+
+Template is used to reduce 3 nearly identical functions to one function for all data types.
+
+@param[in] value1 - The first value to swap
+@param[in] value2 - The second value to swap    
+*/
+template <typename T>
+void swapValue(T& value1, T& value2){
+    T tmp = value1;
+    value1 = value2;
+    value2 = tmp;
+}
+
+/*
+@brief Print Sensor Frames
+
+Prints out all Values of the Array SensorFrames
+@param[in] sensorFrames - Array of the Sensor Frames to print
+*/
+template <typename T, std::size_t N>
+void printSensorFrames(const T (&sensorFrames)[N]){
+    if(sensorFrames != nullptr){
+        std::cout << "Sensor Frames: " ;
+        for(std::size_t i=0; i<N; ++i){
+            std::cout <<"[" << sensorFrames[i] <<"]"; 
+        }
+        std::cout << std::endl;
+    }
+}
+
+/*
+@brief Get Weakest Measurement
+
+Returns the weakest measurement from the Array SensorFrames
+@param[in] sensorFrames - Array of the Sensor Frames to analyze
+*/
+template <typename T, std::size_t N>
+T getWeakestMessure(const T (&sensorFrames)[N]){
+    T weakest = 0;
+    if(sensorFrames != nullptr){
+        T weakest = sensorFrames[0];
+        for(std::size_t i=1; i<N; ++i){
+            if(sensorFrames[i] < weakest){
+                weakest = sensorFrames[i];
+            }
+        }
+    }else{
+        std::cout << "Error: sensorFrames is a null pointer." << std::endl;
+    }
+    return weakest;
+}
+
+/*
+@brief Print Sensor Metadata
+
+Prints out the metadata for a specific sensor
+@param[in] label1 - The label for the first value
+@param[in] value1 - The first value to print
+@param[in] label2 - The label for the second value
+@param[in] metadata - The metadata to print
+*/
+template <typename T, typename U>
+void printSensorMetadata(const std::string& label1, const T& value1, const std::string& label2, const U& metadata){
+    std::cout << label1 << ": " << value1 << " " << label2 << ": " << metadata << std::endl;
+}
+
+
+#endif 
