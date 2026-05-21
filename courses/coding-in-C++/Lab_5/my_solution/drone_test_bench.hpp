@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstddef>
+#include <vector>
 
 /*
 @brief Swap two Values
@@ -71,6 +72,15 @@ template <typename T, typename U>
 void printSensorMetadata(const std::string& label1, const T& value1, const std::string& label2, const U& metadata){
     std::cout << label1 << ": " << value1 << " " << label2 << ": " << metadata << std::endl;
 }
+
+
+/*
+@brief Print Vector
+
+Prints out all Values of the Vector
+@param[in] vec - The vector to print
+*/
+void printVector(const std::vector<int>& vec);
 
 
 #endif 
