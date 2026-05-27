@@ -121,6 +121,12 @@ void reportDataSet(const std::vector<T>& dataset){
     if(dataset.empty()){
         std::cout << "Error: Dataset is empty!" <<std::endl;
     }else{
+        std::cout << "Data Set: ";
+        for(const auto&data : dataset){
+            std::cout << data << " ";
+        }
+        std::cout << std::endl;
+
         auto report = analyzeDataSet(dataset);
         std::cout << "Data Set Report:" << std::endl;
         std::cout << "Max: " << report.max << std::endl;
