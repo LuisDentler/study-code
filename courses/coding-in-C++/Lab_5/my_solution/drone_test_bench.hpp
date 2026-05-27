@@ -6,6 +6,12 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <array>
+#include <string>
+
+
+
+
 
 
 template <typename T>
@@ -13,6 +19,10 @@ struct DataSetReport{
     T max;
     T sum;
     T average;
+};
+template<>
+struct DataSetReport<bool>{
+    bool enoughTrue;
 };
 
 
@@ -95,7 +105,7 @@ Prints out all Values of the Vector
 void printVector(const std::vector<int>& vec);
 
 
-//------------------TASK 9------------------
+//------------------SECTION 3------------------
 
 
 template <typename T>
@@ -112,6 +122,19 @@ DataSetReport<T> analyzeDataSet(const std::vector<T>& dataset){
 
         return report;
         
+}
+
+template<>
+DataSetReport<bool> analyzeDataSet(const std::vector<bool>& dataset){
+    DataSetReport<bool> report;
+    auto report_sum = std::count(dataset.begin(), dataset.end(), true);
+    if(report_sum > dataset.size() / 2){
+        report.enoughTrue = true;
+    }else{
+        report.enoughTrue = false;
+    }
+  
+    return report;
 }
 
 
@@ -134,6 +157,26 @@ void reportDataSet(const std::vector<T>& dataset){
         std::cout << "Average: " << report.average << std::endl;
     }
 }
+
+template<>
+void reportDataSet(const std::vector<bool>& dataset){
+    if(dataset.empty()){
+        std::cout << "Error: Dataset is empty!" <<std::endl;
+    }else{
+        std::cout << "Data Set: ";
+        auto report = analyzeDataSet(dataset);
+        std::cout << "Data Set Report:" << std::endl;
+        std::cout << "Enough True: " << std::boolalpha << report.enoughTrue << std::endl;
+    }
+}
+
+
+template <typename T, std::size_t N>
+std::vector<T> swapArrayToVector(const std::array<T, N>& frame) {
+    return std::vector<T>(frame.begin(), frame.end());
+}
+
+
 
 
 #endif 

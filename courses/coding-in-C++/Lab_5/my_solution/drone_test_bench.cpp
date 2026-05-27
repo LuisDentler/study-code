@@ -87,5 +87,19 @@ int main(){
     reportDataSet(recordSamples);
     std::vector<double> recordSamplesDouble = {7.5, -1.2, 13.3, -1.0, 21.8, 21.1, 8.6, -1.5, 8.9};
     reportDataSet(recordSamplesDouble);
+
+
+    //Example drone_dataset as Array
+    std::array<int, 5> drone_dataset = {10, 20, 30, 40, 50};
+    std::vector<int> drone_vector = swapArrayToVector(drone_dataset);
+    std::cout << "Drone Dataset as Vector: ";
+    printVector(drone_vector);
+    reportDataSet(drone_vector);
+
+    //Example boolean dataset 
+    std::vector<bool> bool_dataset = {true, false, true, true, false};
+    reportDataSet(bool_dataset);
+
+
     return 0;
 }
