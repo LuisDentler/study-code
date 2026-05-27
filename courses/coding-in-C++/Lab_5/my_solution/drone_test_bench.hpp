@@ -4,6 +4,18 @@
 #include <iostream>
 #include <cstddef>
 #include <vector>
+#include <algorithm>
+#include <numeric>
+
+
+template <typename T>
+struct DataSetReport{
+    T max;
+    T sum;
+    T average;
+};
+
+
 
 /*
 @brief Swap two Values
@@ -81,6 +93,41 @@ Prints out all Values of the Vector
 @param[in] vec - The vector to print
 */
 void printVector(const std::vector<int>& vec);
+
+
+//------------------TASK 9------------------
+
+
+template <typename T>
+DataSetReport<T> analyzeDataSet(const std::vector<T>& dataset){
+        DataSetReport<T> report;
+
+        auto max = std::max_element(dataset.begin(), dataset.end());
+        auto sum = std::accumulate(dataset.begin(),dataset.end(), T{});
+        auto avarage = sum / dataset.size();
+
+        report.max = *max;
+        report.sum = sum;
+        report.average = avarage;
+
+        return report;
+        
+}
+
+
+
+template <typename T>
+void reportDataSet(const std::vector<T>& dataset){
+    if(dataset.empty()){
+        std::cout << "Error: Dataset is empty!" <<std::endl;
+    }else{
+        auto report = analyzeDataSet(dataset);
+        std::cout << "Data Set Report:" << std::endl;
+        std::cout << "Max: " << report.max << std::endl;
+        std::cout << "Sum: " << report.sum << std::endl;
+        std::cout << "Average: " << report.average << std::endl;
+    }
+}
 
 
 #endif 

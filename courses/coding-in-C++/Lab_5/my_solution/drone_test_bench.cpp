@@ -82,6 +82,9 @@ int main(){
     std::cout << std::endl;
     */
 
+    /* Task 9 */
+    std::vector<int> recordSamples = {7, -1, 13, -1, 21, 21, 8, -1, 8};
+    reportDataSet(recordSamples);
 
     return 0;
 }
