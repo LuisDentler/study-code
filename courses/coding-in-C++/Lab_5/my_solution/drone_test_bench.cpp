@@ -85,6 +85,7 @@ int main(){
     /* Task 9 */
     std::vector<int> recordSamples = {7, -1, 13, -1, 21, 21, 8, -1, 8};
     reportDataSet(recordSamples);
-
+    std::vector<double> recordSamplesDouble = {7.5, -1.2, 13.3, -1.0, 21.8, 21.1, 8.6, -1.5, 8.9};
+    reportDataSet(recordSamplesDouble);
     return 0;
 }
