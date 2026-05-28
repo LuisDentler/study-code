@@ -5,12 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-void printVector(const std::vector<int>& vec){
-    for(int value : vec){
-        std::cout << value << " ";
-    }
-    std::cout << std::endl;
-}
+
 
 
 int main(){
@@ -30,17 +25,12 @@ int main(){
     /* Task 6 
     std::vector<int> recordSamples = {42, 17, 42, 5, 99, 17, 63, 12};
     std::cout << "Original Value: ";
-    for(int sample : recordSamples){
-        std::cout << sample << " ";
-    }
-    std::cout << std::endl;
+    printVector(recordSamples);
 
     std::sort(recordSamples.begin(), recordSamples.end());
     std::cout << "Sorted Value: ";
-    for(int samples : recordSamples){
-        std::cout << samples<< " ";
-    }
-    std::cout << std::endl;
+    printVector(recordSamples);
+    
 
     auto iter = std::find(recordSamples.begin(), recordSamples.end(), 63);
     if(iter != recordSamples.end()){
@@ -56,7 +46,7 @@ int main(){
     for(int sample : recordSamples){
        auto iterChangeToZero = std::find(recordSamples.begin(), recordSamples.end(), -1);
        if(iterChangeToZero != recordSamples.end()){
-            *iterChangeToZero =0;
+            *iterChangeToZero = 0;
        }
        
     }
@@ -82,7 +72,7 @@ int main(){
     std::cout << std::endl;
     */
 
-    /* Task 9 */
+    /* Task 9 
     std::vector<int> recordSamples = {7, -1, 13, -1, 21, 21, 8, -1, 8};
     reportDataSet(recordSamples);
     std::vector<double> recordSamplesDouble = {7.5, -1.2, 13.3, -1.0, 21.8, 21.1, 8.6, -1.5, 8.9};
@@ -100,6 +90,6 @@ int main(){
     std::vector<bool> bool_dataset = {true, false, true, true, false};
     reportDataSet(bool_dataset);
 
-
+    */
     return 0;
 }

@@ -48,11 +48,11 @@ void swapValue(T& value1, T& value2){
 Prints out all Values of the Array SensorFrames
 @param[in] sensorFrames - Array of the Sensor Frames to print
 */
-template <typename T, std::size_t N>
-void printSensorFrames(const T (&sensorFrames)[N]){
+template <typename T, const int size>
+void printSensorFrames(const T (&sensorFrames)[size]){
     if(sensorFrames != nullptr){
         std::cout << "Sensor Frames: " ;
-        for(std::size_t i=0; i<N; ++i){
+        for(std::size_t i=0; i<size; ++i){
             std::cout <<"[" << sensorFrames[i] <<"]"; 
         }
         std::cout << std::endl;
@@ -65,8 +65,8 @@ void printSensorFrames(const T (&sensorFrames)[N]){
 Returns the weakest measurement from the Array SensorFrames
 @param[in] sensorFrames - Array of the Sensor Frames to analyze
 */
-template <typename T, std::size_t N>
-T getWeakestMessure(const T (&sensorFrames)[N]){
+template <typename T, const int size>
+T getWeakestMessure(const T (&sensorFrames)[size]){
     T weakest = 0;
     if(sensorFrames != nullptr){
         T weakest = sensorFrames[0];
@@ -102,7 +102,13 @@ void printSensorMetadata(const std::string& label1, const T& value1, const std::
 Prints out all Values of the Vector
 @param[in] vec - The vector to print
 */
-void printVector(const std::vector<int>& vec);
+template <typename T>
+void printVector(const std::vector<T>& vec){
+    for(const auto& value : vec){
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+}
 
 
 //------------------SECTION 3------------------
