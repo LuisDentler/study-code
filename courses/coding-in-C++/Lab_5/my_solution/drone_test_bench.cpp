@@ -50,7 +50,6 @@ int main(){
        }
        
     }
-    printVector(recordSamples);
     auto count = std::count(recordSamples.begin(), recordSamples.end(), 8);
     std::cout << "Count of 8: " << count << std::endl;
 

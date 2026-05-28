@@ -120,7 +120,7 @@ DataSetReport<T> analyzeDataSet(const std::vector<T>& dataset){
 
         auto max = std::max_element(dataset.begin(), dataset.end());
         auto sum = std::accumulate(dataset.begin(),dataset.end(), T{});
-        auto avarage = sum / dataset.size();
+        auto avarage = static_cast<double>(sum) / static_cast<double>(dataset.size());
 
         report.max = *max;
         report.sum = sum;
