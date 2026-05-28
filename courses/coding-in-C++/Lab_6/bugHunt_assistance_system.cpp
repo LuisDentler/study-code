@@ -68,7 +68,7 @@ void EmergencyBrakeSystem::evaluate(Vehicle &vehicle,
         return;
     }
 
-    if (front_sensor.get_distance() > critical_distance_m)
+    if (front_sensor.get_distance() < critical_distance_m)
     {
         std::cout << "[EmergencyBrakeSystem] Emergency braking triggered.\n";
         vehicle.brake(30.0);

@@ -1,4 +1,4 @@
-#include "vehicle.hpp"
+#include "bugHunt_vehicle.hpp"
 
 Vehicle::Vehicle(const std::string &vehicle_model)
     : model(vehicle_model),
@@ -44,11 +44,13 @@ void Vehicle::brake(double amount_kmh)
 
 void Vehicle::steer(double angle)
 {
+    // Fehlerhafter angle wird ignoriert 
     steering_angle = angle;
 }
 
 void Vehicle::update_lane_offset(double offset)
 {
+    // Fehlerhafter offset wird ignoriert
     lane_offset_m = offset;
 }
 
