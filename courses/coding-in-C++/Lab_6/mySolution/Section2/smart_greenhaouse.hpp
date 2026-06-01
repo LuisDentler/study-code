@@ -4,6 +4,13 @@
 #include <stdexcept>
 
 
+class SensorFailureError : public std::runtime_error{
+    
+    public:
+    SensorFailureError() : std::runtime_error("Sensor is unreachable"){};
+};
+
+
 class Sensor{
     private:
         std::string name;
@@ -30,6 +37,12 @@ class Sensor{
         void print_info() const{
             std::cout << "Sensor: " << name << ", Value: " << value << std::endl;
         }
+        void simulate_failure(){
+            throw SensorFailureError();
+        }
 };
+
+
+
 
 #endif // SMART_GREENHAOUSE_HPP

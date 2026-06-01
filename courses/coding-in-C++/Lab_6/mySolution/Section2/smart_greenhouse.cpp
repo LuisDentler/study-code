@@ -19,13 +19,17 @@ int main(){
         humidity_sensor.print_info();
 
         // This will throw an exception
-        temp_sensor.update_value(150.0);
+        //temp_sensor.update_value(150.0);
+        temp_sensor.simulate_failure();
     }
     catch(const std::out_of_range& e){
         std::cerr << "Out of range error: " << e.what() << std::endl;
     }
     catch(const std::invalid_argument& e){
         std::cerr << "Invalid Argument error: " <<e.what() <<std::endl;
+    }
+    catch(const SensorFailureError& e){
+        std::cerr << "Sensor Failure: " << e.what() <<std::endl;
     }
     catch(const std::exception& e){
         std::cerr << "Error: " << e.what() << std::endl;
