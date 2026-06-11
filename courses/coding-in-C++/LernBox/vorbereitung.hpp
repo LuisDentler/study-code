@@ -160,6 +160,34 @@ class Haus{
 };
 
 
+//Methodchaining 
+class Klasse{
+    private: 
+        int AnzSus;
+        int AnzLehr;
+        std::string name;
+
+    public: 
+        Klasse(int AnzSus, int AnzLehr, std::string name): AnzSus(AnzSus), AnzLehr(AnzLehr), name(name){};
+
+        Klasse& setAnzSus(int anzahl){
+            this->AnzSus = anzahl;
+            return *this;
+        }
+        Klasse& setAnzLehr(int anzahl){
+            this->AnzLehr = anzahl;
+            return *this;
+        }
+        Klasse& setName(std::string name){
+            this->name = name;
+            return *this;
+        }
+        void printKlasse()const{
+            std::cout<<"Klasse: "<<name<<std::endl<<"Anz Sus: "<<AnzSus<<std::endl<<"Anz Lehr: "<<AnzLehr<<std::endl;
+        }
+
+};
+
 
 
 #endif
