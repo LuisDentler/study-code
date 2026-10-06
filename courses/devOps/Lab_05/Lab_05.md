@@ -1,6 +1,6 @@
 # Lab 5: The Build Phase
 
-This lab focuses on the build phase of a software project.
+This lab focuses on the build phase of a sw project.
 You will first work directly with GCC compiler options, then automate the same build with `make`, and finally describe the project with CMake.
 
 All the following sections of this lab are based on the following levels of difficulty:
