@@ -111,7 +111,6 @@ Each increment should provide a usable extension of the system.
 
 Explain why your first increment is already useful to students.
 
-Explain the difference between an increment and an iteration.
 
 Consider the connection search feature. During development, it evolves as follows:
 
